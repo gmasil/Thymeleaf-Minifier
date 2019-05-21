@@ -21,13 +21,17 @@ public class SimpleMinifierHandler extends AbstractTemplateHandler {
 	@Override
 	public void handleText(IText text) {
 		if (!ignorable(text)) {
-			String trim = text.getText().trim();
-			if (text.getText().length() != trim.length()) {
-				super.handleText(new Text(text, trim));
-			} else {
-				super.handleText(text);
-			}
+			super.handleText(minifyText(text));
 		}
+	}
+
+	private IText minifyText(IText iText) {
+		String[] lines = iText.getText().replace("\r", "").split("\n");
+		StringBuilder sb = new StringBuilder();
+		for (String line : lines) {
+			sb.append(line.trim() + " ");
+		}
+		return new Text(iText, sb.toString());
 	}
 
 	private boolean ignorable(IText text) {
@@ -35,32 +39,32 @@ public class SimpleMinifierHandler extends AbstractTemplateHandler {
 	}
 
 	public static class Text implements IText {
-		private IText itext;
+		private IText iText;
 		private String overwriteText;
 
 		public Text(IText itext, String overwriteText) {
-			this.itext = itext;
+			this.iText = itext;
 			this.overwriteText = overwriteText;
 		}
 
 		@Override
 		public boolean hasLocation() {
-			return itext.hasLocation();
+			return iText.hasLocation();
 		}
 
 		@Override
 		public String getTemplateName() {
-			return itext.getTemplateName();
+			return iText.getTemplateName();
 		}
 
 		@Override
 		public int getLine() {
-			return itext.getLine();
+			return iText.getLine();
 		}
 
 		@Override
 		public int getCol() {
-			return itext.getCol();
+			return iText.getCol();
 		}
 
 		@Override
