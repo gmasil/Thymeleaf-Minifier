@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.gmasil</groupId>
@@ -7,12 +6,30 @@
 	<version>1.0-SNAPSHOT</version>
 	<name>Thymeleaf Minifier</name>
 	<description>Thymeleaf addon to minify html output</description>
+	<inceptionYear>2019</inceptionYear>
+	<url>https://bitbucket.gmasil.de/projects/TOOL/repos/thymeleaf-minifier/browse</url>
+
+	<organization>
+		<name>GMasil</name>
+		<url>https://gmasil.de</url>
+	</organization>
+
+	<licenses>
+		<license>
+			<name>GNU General Public License v3 (GPLv3)</name>
+			<url>https://www.gnu.org/licenses/gpl-3.0.txt</url>
+		</license>
+	</licenses>
 
 	<properties>
 		<java.version>1.8</java.version>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!-- versions -->
+		<source-plugin.version>3.1.0</source-plugin.version>
+		<javadoc-plugin.version>3.1.0</javadoc-plugin.version>
+		<license-plugin.version>3.0</license-plugin.version>
 	</properties>
 
 	<dependencies>
@@ -22,6 +39,72 @@
 			<version>2.1.5.RELEASE</version>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<!-- source jar for deploy -->
+			<plugin>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>${source-plugin.version}</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- javadoc jar for deploy -->
+			<plugin>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>${javadoc-plugin.version}</version>
+				<configuration>
+					<skip>${maven.source.skip}</skip>
+				</configuration>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- license -->
+			<plugin>
+				<groupId>com.mycila</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+				<version>${license-plugin.version}</version>
+				<configuration>
+					<header>${project.basedir}/license/templates/gnu_gpl_v3.txt</header>
+					<properties>
+						<owner>Simon Oelerich</owner>
+					</properties>
+					<includes>
+						<include>src/main/java/**</include>
+						<include>src/main/resources/**</include>
+						<include>src/test/java/**</include>
+						<include>src/test/resources/**</include>
+					</includes>
+					<excludes>
+						<exclude>**/LICENSE.txt</exclude>
+						<exclude>**/spring.factories</exclude>
+					</excludes>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 
 	<distributionManagement>
 		<repository>
