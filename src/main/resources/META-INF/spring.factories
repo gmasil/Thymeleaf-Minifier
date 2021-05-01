@@ -1,1 +1,1 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=de.gmasil.thymeleaf.minifier.SimpleMinifierDialect
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=de.gmasil.thymeleaf.minifier.SimpleMinifierDialect,de.gmasil.thymeleaf.minifier.SimpleMinifierHandler

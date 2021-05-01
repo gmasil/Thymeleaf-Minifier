@@ -1,6 +1,6 @@
 /**
  * Thymeleaf Minifier
- * Copyright © 2019 Simon Oelerich
+ * Copyright © 2021 gmasil.de
  *
  * This file is part of Thymeleaf Minifier.
  *

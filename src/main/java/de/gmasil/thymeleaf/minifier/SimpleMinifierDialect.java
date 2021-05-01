@@ -1,6 +1,6 @@
 /**
  * Thymeleaf Minifier
- * Copyright © 2019 Simon Oelerich
+ * Copyright © 2021 gmasil.de
  *
  * This file is part of Thymeleaf Minifier.
  *
@@ -22,13 +22,11 @@ package de.gmasil.thymeleaf.minifier;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.springframework.context.annotation.Configuration;
 import org.thymeleaf.dialect.IPostProcessorDialect;
 import org.thymeleaf.engine.ITemplateHandler;
 import org.thymeleaf.postprocessor.IPostProcessor;
 import org.thymeleaf.templatemode.TemplateMode;
 
-@Configuration
 public class SimpleMinifierDialect implements IPostProcessorDialect {
 	@Override
 	public String getName() {
