@@ -7,7 +7,7 @@ Maven dependency:
     <dependency>
 	   <groupId>de.gmasil</groupId>
 	   <artifactId>thymeleaf-minifier</artifactId>
-	   <version>1.0</version>
+	   <version>1.1</version>
     </dependency>
 
 Add the repository to your pom or settings:
