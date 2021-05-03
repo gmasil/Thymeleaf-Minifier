@@ -48,7 +48,7 @@ public class SimpleMinifierHandler extends AbstractTemplateHandler {
         String[] lines = iText.getText().replace("\r", "").split("\n");
         StringBuilder sb = new StringBuilder();
         for (String line : lines) {
-            sb.append(line.trim() + " ");
+            sb.append(line.trim());
         }
         return new Text(iText, sb.toString());
     }
