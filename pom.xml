@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.gmasil</groupId>
 	<artifactId>thymeleaf-minifier</artifactId>
-	<version>1.2-SNAPSHOT</version>
+	<version>1.2</version>
 	<name>Thymeleaf Minifier</name>
 	<description>Thymeleaf addon to minify html output</description>
 	<inceptionYear>2021</inceptionYear>
